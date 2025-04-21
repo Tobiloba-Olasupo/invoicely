@@ -10,9 +10,13 @@ import { Check, CreditCard } from 'lucide-react';
 import { createPayment } from "@/app/actions";
 import StatusHandler from "./StatusCheck";
 
+interface PaymentPageProps {
+  params: {
+    invoiceId: string;
+  };
+}
 
-
-async function PaymentPage({params}: {params: {invoiceId: string}}) {
+async function PaymentPage({params}: PaymentPageProps) {
 
     const invoiceId = parseInt(params.invoiceId);
 

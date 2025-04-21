@@ -6,8 +6,13 @@ import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import Invoice from "./Invoice"
 
+interface PageProps {
+  params: {
+    invoiceId: string;
+  };
+}
 
-async function InvoicePage({params}: {params: {invoiceId: string}} ) {
+async function InvoicePage({params}: PageProps ) {
 
     const invoiceId = parseInt(params.invoiceId);
     const {userId} = await auth();
