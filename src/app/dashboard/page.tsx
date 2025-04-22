@@ -42,10 +42,10 @@ async function dashboard() {
     }
     
   return (
-    <div className="flex flex-col gap-12 items-center max-w-7xl h-screen mx-auto text-center py-20 px-5">
+    <div className="flex flex-col gap-12 items-center pt-[8em] max-w-7xl h-screen mx-auto text-center py-20 px-5">
         <div className='flex justify-between items-center w-full'>
-            <h1 className="font-bold text-5xl">
-                Invoices
+            <h1 className="font-bold text-3xl">
+                Dashboard
             </h1>
             <div>
                 <Button variant='outline' className='cursor-pointer inline-flex gap-2' asChild>

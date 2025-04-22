@@ -19,14 +19,14 @@ function AddInvoice() {
     }
 
   return (
-    <div className="flex flex-col gap-12 max-w-7xl h-screen mx-auto py-20 px-5">
+    <div className="flex flex-col gap-12 pt-[8em] max-w-7xl h-screen mx-auto py-20 px-5">
         <div className='flex justify-between items-center w-full'>
-            <h1 className="font-bold text-5xl">
+            <h1 className="font-bold text-3xl">
                 Create Invoice
             </h1>
         </div>
 
-        <div className='w-[40%]'>
+        <div className='w-full sm:w-[40%]'>
             <Form action={createAction} onSubmit={handleOnSubmit} className='flex flex-col gap-6'>
                 <div className='flex flex-col gap-2'>
                     <Label htmlFor='name'>Billing Name</Label>

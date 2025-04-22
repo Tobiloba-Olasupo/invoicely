@@ -95,7 +95,7 @@ export default function SignInPage() {
   // Loading state
   if (!isLoaded) {
     return (
-      <div className="flex flex-col items-center h-screen max-w-7xl mx-auto text-center py-20 px-5">
+      <div className="flex flex-col items-center justify-center h-screen max-w-7xl mx-auto text-center py-20 px-5">
         <div className="w-8 h-8 border-4 border-blue-500 rounded-full border-t-transparent animate-spin"></div>
       </div>
     );
@@ -104,7 +104,7 @@ export default function SignInPage() {
   // Code verification view
   if (view === 'code') {
     return (
-      <div className="flex flex-col items-center h-screen max-w-7xl mx-auto text-center py-20 px-5">
+      <div className="flex flex-col pt-[10em] items-center h-screen max-w-7xl mx-auto text-center py-20 px-5">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-lg">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900">Check your email</h1>
@@ -163,7 +163,7 @@ export default function SignInPage() {
 
   // Email/password view
   return (
-    <div className="flex flex-col items-center h-screen max-w-7xl mx-auto text-center py-20 px-5">
+    <div className="flex flex-col items-center pt-[10em] h-screen max-w-7xl mx-auto text-center py-20 px-5">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg border">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
