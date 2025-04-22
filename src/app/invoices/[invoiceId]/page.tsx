@@ -9,7 +9,7 @@ type paramsType = Promise<{id: string}>
 
 export default async function InvoicePage(props: {params: paramsType}) {
   const {id} = await props.params;
-  const invoiceId = parseFloat(id)
+  const invoiceId = parseInt(id)
 
   const { userId } = await auth();
 

@@ -6,7 +6,7 @@ import { verifyPaymentWithStripe } from "@/app/actions";
 export default function StatusHandler({invoiceId}: {invoiceId: number}) {
     const searchParams = useSearchParams();
     const paymentStatus = searchParams.get("status");
-    const sessionId = searchParams.get("session_id")
+    const sessionId = searchParams.get("session_id");
     const router = useRouter();
 
     useEffect(()=>{
