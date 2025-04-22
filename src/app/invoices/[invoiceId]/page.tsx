@@ -5,12 +5,12 @@ import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import Invoice from "./Invoice";
 
-export default async function InvoicePage({ 
-  params 
-}: { 
-  params: { invoiceId: number } 
-}) {
-  const invoiceId = params.invoiceId;
+type paramsType = Promise<{id: string}>
+
+export default async function InvoicePage(props: {params: paramsType}) {
+  const {id} = await props.params;
+  const invoiceId = parseFloat(id)
+
   const { userId } = await auth();
 
   if (isNaN(invoiceId)) {
