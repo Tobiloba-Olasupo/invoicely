@@ -8,7 +8,6 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { Check, CreditCard } from 'lucide-react';
 import { createPayment } from "@/app/actions";
-import StatusHandler from "./StatusCheck";
 
 
 async function PaymentPage({params}: {params: Promise<{ invoiceId: string }>}) {
@@ -71,7 +70,7 @@ async function PaymentPage({params}: {params: Promise<{ invoiceId: string }>}) {
             )
           }
 
-          <StatusHandler invoiceId={invoiceId} />
+          {/* <StatusHandler invoiceId={invoiceId} /> */}
         </div>
       </div>
 

@@ -25,7 +25,10 @@ function Header() {
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <span className="text-3xl font-semibold">invoicely</span>
+              <Link href="/">
+                <span className="text-3xl font-semibold">invoicely</span>
+              </Link>
+              
             </div>
             
             {/* Desktop Navigation */}
@@ -88,8 +91,8 @@ function Header() {
         {isMenuOpen && (
           <div className="md:hidden bg-white pt-2 pb-4 px-4">
             <div className="flex flex-col space-y-3">
-              <Link href="#features" className="text-gray-700 hover:text-blue-600 transition py-2" onClick={toggleMenu}>
-                Features
+              <Link href="/" className="hover:text-blue-600 transition font-semibold">
+                Home
               </Link>
               <Link href="#why" className="text-gray-700 hover:text-blue-600 transition py-2" onClick={toggleMenu}>
                 Why Invoicely
