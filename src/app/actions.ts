@@ -7,7 +7,8 @@ import { redirect } from 'next/navigation';
 import { eq, and } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-import { stripe } from "@/lib/stripe";
+import Stripe from "stripe";
+
 
 
 export async function createAction(formData: FormData) {
@@ -91,6 +92,7 @@ export async function deleteInvoiceAction(formData: FormData) {
 
 
 export async function createPayment(formData: FormData) {
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
     const headersList = await headers();
     const origin = headersList.get("origin");
     const id = parseInt(formData.get("id") as string);
@@ -119,23 +121,10 @@ export async function createPayment(formData: FormData) {
         success_url: `${origin}/invoices/${id}/payment?status=success&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/invoices/${id}/payment?status=canceled&session_id={CHECKOUT_SESSION_ID}`,
     });
-    
+
     if (!session.url) {
         throw new Error("Invalid Session");
     }
-    
+
     redirect(session.url);
-}
-
-export async function verifyPaymentWithStripe(invoiceId: number, sessionId: string) {
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-    if (session.payment_status === "paid") {
-        await db.update(invoices)
-        .set({status: "paid"})
-        .where(eq(invoices.id, invoiceId))
-        return{success: true}
-    } else {
-        return{success: false}
-    }
 }
