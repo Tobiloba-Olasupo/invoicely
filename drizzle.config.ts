@@ -1,21 +1,16 @@
-import { defineConfig } from 'drizzle-kit';
-import * as dotenv from 'dotenv';
+import { defineConfig } from "drizzle-kit";
+import { loadEnvConfig } from "@next/env";
 
-
-dotenv.config({
-    path: "./.env.local"
-});
-
-if (typeof process.env.DATABASE_URL !== "string")
- {
-    throw new Error("Please set your DATABASE")
- }
+loadEnvConfig(process.cwd(), true);
 
 export default defineConfig({
-  out: './src/db/migrations',
-  schema: './src/db/schema.ts',
-  dialect: 'postgresql',
+  schema: "./db/schema.ts",
+  out: "./drizzle",
+  dialect: "postgresql",
+  schemaFilter: "public",
+  verbose: true,
+  strict: true,
   dbCredentials: {
-    url: process.env.DATABASE_URL,
+    url: process.env.DATABASE_URL as string,
   },
 });
