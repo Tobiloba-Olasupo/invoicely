@@ -10,10 +10,11 @@ import { Check, CreditCard } from 'lucide-react';
 import { createPayment } from "@/app/actions";
 import StatusHandler from "./StatusCheck";
 
+type paramsType = Promise<{id: string}>
 
-async function PaymentPage({params}: {params: {invoiceId: number}}) {
-
-    const invoiceId = params.invoiceId;
+async function PaymentPage(props: {params: paramsType}) {
+    const {id} = await props.params
+    const invoiceId = parseFloat(id);
 
     if (!invoiceId) {
       notFound();
