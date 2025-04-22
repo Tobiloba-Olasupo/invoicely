@@ -5,10 +5,14 @@ import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import Invoice from "./Invoice";
 
+type PageProps = {
+  params: {
+    invoiceId: string;
+  };
+};
 
-
-export default async function InvoicePage({params}: {params: {invoiceId: number}}) {
-  const invoiceId = params.invoiceId
+export default async function InvoicePage({params}: PageProps) {
+  const invoiceId = parseInt(params.invoiceId)
 
   const { userId } = await auth();
 
