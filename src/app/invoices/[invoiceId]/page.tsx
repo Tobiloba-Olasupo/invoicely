@@ -7,8 +7,8 @@ import Invoice from "./Invoice";
 
 
 
-export default async function InvoicePage({params}: {params: {invoiceId: string}}) {
-  const invoiceId = parseInt(params.invoiceId)
+export default async function InvoicePage({params}: {params: {invoiceId: number}}) {
+  const invoiceId = params.invoiceId
 
   const { userId } = await auth();
 
