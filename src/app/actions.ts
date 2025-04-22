@@ -6,23 +6,9 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from 'next/navigation';
 import { eq, and } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import Stripe from "stripe";
 import { headers } from "next/headers";
+import { stripe } from "@/lib/stripe";
 
-const stripe = new Stripe(process.env.STRIPE_API_SECRET!)
-
-export async function verifyPaymentWithStripe(invoiceId: number, sessionId: string) {
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-    if (session.payment_status === "paid") {
-        await db.update(invoices)
-        .set({status: "paid"})
-        .where(eq(invoices.id, invoiceId))
-        return{success: true}
-    } else {
-        return{success: false}
-    }
-}
 
 export async function createAction(formData: FormData) {
     const { userId } = await auth();
@@ -139,4 +125,17 @@ export async function createPayment(formData: FormData) {
     }
     
     redirect(session.url);
+}
+
+export async function verifyPaymentWithStripe(invoiceId: number, sessionId: string) {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    if (session.payment_status === "paid") {
+        await db.update(invoices)
+        .set({status: "paid"})
+        .where(eq(invoices.id, invoiceId))
+        return{success: true}
+    } else {
+        return{success: false}
+    }
 }
