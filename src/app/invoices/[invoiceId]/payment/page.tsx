@@ -10,20 +10,17 @@ import { Check, CreditCard } from 'lucide-react';
 import { createPayment } from "@/app/actions";
 import StatusHandler from "./StatusCheck";
 
-type paramsType = Promise<{invoiceId: string}>
+async function PaymentPage({params}: {params: {invoiceId: string}}) {
+  const invoiceId = parseInt(params.invoiceId)
 
-async function PaymentPage(props: {params: paramsType}) {
-  const {invoiceId} = await props.params;
-  const invoiceIdNum = parseInt(invoiceId);
-
-    if (!invoiceIdNum || isNaN(invoiceIdNum)) {
+    if (!invoiceId) {
       notFound();
     }
 
     const [result] = await db.select()
     .from(invoices)
     .innerJoin(customers, eq(invoices.customerId, customers.id))
-    .where (eq (invoices.id, invoiceIdNum))
+    .where (eq (invoices.id, invoiceId))
     .limit(1);
 
     const invoice = {
@@ -72,7 +69,7 @@ async function PaymentPage(props: {params: paramsType}) {
             )
           }
 
-          <StatusHandler invoiceId={invoiceIdNum} />
+          <StatusHandler invoiceId={invoiceId} />
         </div>
       </div>
 

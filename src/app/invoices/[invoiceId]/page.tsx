@@ -5,11 +5,10 @@ import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import Invoice from "./Invoice";
 
-type paramsType = Promise<{id: string}>
 
-export default async function InvoicePage(props: {params: paramsType}) {
-  const {id} = await props.params;
-  const invoiceId = parseInt(id)
+
+export default async function InvoicePage({params}: {params: {invoiceId: string}}) {
+  const invoiceId = parseInt(params.invoiceId)
 
   const { userId } = await auth();
 
