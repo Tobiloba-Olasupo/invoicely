@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import Stripe from "stripe";
 
-
+const stripe = new Stripe(process.env.STRIPE_API_SECRET!);
 
 export async function createAction(formData: FormData) {
     const { userId } = await auth();
@@ -91,8 +91,8 @@ export async function deleteInvoiceAction(formData: FormData) {
 }
 
 
+
 export async function createPayment(formData: FormData) {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
     const headersList = await headers();
     const origin = headersList.get("origin");
     const id = parseInt(formData.get("id") as string);
@@ -106,7 +106,6 @@ export async function createPayment(formData: FormData) {
     .limit(1);
 
     const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
         line_items: [
             {
                 price_data: {
@@ -125,6 +124,8 @@ export async function createPayment(formData: FormData) {
     if (!session.url) {
         throw new Error("Invalid Session");
     }
-
     redirect(session.url);
 }
+
+
+
