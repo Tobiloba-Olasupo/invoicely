@@ -11,15 +11,9 @@ import { createPayment } from "@/app/actions";
 import StatusHandler from "./StatusCheck";
 
 
-type PageProps = {
-  params: {
-    invoiceId: string;
-  };
-};
-
-
-async function PaymentPage({params}: PageProps) {
-  const invoiceId = parseInt(params.invoiceId)
+async function PaymentPage({params}: {params: Promise<{ invoiceId: string }>}) {
+  const id = await params;
+  const invoiceId = Number(id.invoiceId)
 
     if (!invoiceId) {
       notFound();
