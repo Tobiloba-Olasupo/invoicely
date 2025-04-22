@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import heroImage from "../../public/hero.png"
 
 import { 
   Check, 
@@ -40,7 +41,7 @@ export default function LandingPage() {
           {/* Hero Image */}
           <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
             <Image 
-              src="/public/hero.png" 
+              src={heroImage} 
               alt="Invoicely Dashboard" 
               className="w-full h-auto"
             />
@@ -146,9 +147,9 @@ export default function LandingPage() {
             <div>
               <div className="bg-blue-50 p-1 rounded-xl mb-8">
                 <Image 
-                  src="/api/placeholder/600/400" 
-                  alt="Invoicely on multiple devices" 
-                  className="rounded-lg w-full h-auto"
+                  src={heroImage} 
+                  alt="Invoicely Dashboard" 
+                  className="w-full h-auto"
                 />
               </div>
             </div>

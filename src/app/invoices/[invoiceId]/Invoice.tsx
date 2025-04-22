@@ -46,7 +46,7 @@ function Invoice({invoice}: InvoiceProps) {
     };
 
   return (
-    <div className="flex flex-col gap-12 max-w-7xl h-screen mx-auto py-20 px-5">
+    <div className="flex flex-col pt-[8em] gap-12 max-w-7xl h-screen mx-auto py-20 px-5">
 
       <div className='flex flex-col gap-5 sm:flex-row sm:items-center justify-between w-full'>
         <div className='flex gap-5 items-center'>
